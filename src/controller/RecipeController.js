@@ -1,24 +1,43 @@
-const request = require("request");
+const RecipePuppy = require('../models/RecipePuppy');
 
 class RecipeController {
-    getRecipePuppy(req, res){
-        return new Promise((resolve, reject) => {
-            try {
-                request({
-                    url: "http://www.recipepuppy.com/api/?i=onions,garlic",
-                    method: 'GET',
-                }, function (error, response, body) {
-                    if (error) {
-                        reject(error);
-                    } else {
-                        resolve(JSON.parse(response.body));
+    
+    recipePuppyController(req, res, next){
+        const recipePuppy = new RecipePuppy();
+
+        var query = recipePuppy.handleQuery(req);
+        if(!query){
+            var error = new Error("Verifique sua requisição!");
+            error.status = 400;
+            next(error);
+            return;
+        }
+
+        var resolvePromise = recipePuppy.getRecipePuppy(query.toString());
+        //success call API recipePuppy
+        resolvePromise.then((response)=>{
+
+            if(response.results && response.results.length > 0){
+                // need find a gif to the results
+                res.status(200).send(response);
+            }else{
+                //no results
+                res.status(200).send({
+                    "keywords": query,
+                    "recipes": []
                     }
-                });
+                );
             }
-            catch (error) {
-                console.error("RecipeController.getRecipePuppy ERROR: " + error);
-                reject(error);
+        });
+        
+        //error call API recipePuppy
+        resolvePromise.catch((error)=>{
+            if(!error.status){
+                error.status = 503;
+                error.message = "Serviço temporariamente indisponivel";
             }
+            next(error);
+            return;
         });
     }
 }
