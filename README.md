@@ -5,8 +5,12 @@ obtendo o nome da receita, ingredientes e link, também realiza a busca de um gi
 Disponível via GET com a porta 3000 como default, na rota /recipes o request deve ser realizado passando o(s) ingredientes via parâmetro na URL e devem ser separados por vírgula, veja o exemplo onde onion e garlic são ingredientes passados para a chamada:
 localhost:3000/recipes?i=onions,garlic
 
-Para a utilização das APIs Giphy é necessário criar uma api key, você pode criar a sua api key no site https://developers.giphy.com/docs/api/#quick-start-guide
-Após criar a api key, você deve configurar a váriavel de ambiente GIPHY_API_KEY do arquivo .env de nosso serviço.
+A utilização das APIs Giphy exige a criação de uma api key, você pode criar a sua api key no site https://developers.giphy.com/docs/api/#quick-start-guide
+Com sua api key criada, você deve configurar a váriavel de ambiente GIPHY_API_KEY do arquivo .env de nosso serviço.
+
+Após isso, basta executar:
+npm i e npm start
+Com isso você terá o serviço rodando.
 
 
 
