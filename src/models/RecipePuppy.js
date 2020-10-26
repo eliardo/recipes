@@ -1,7 +1,7 @@
 const request = require("request");
 
 class RecipePuppy {
-    
+    /** Verify if there is query and sort that */
     handleQuery(req){
         if((!req.query || !req.query.i) || req.query.i.split(',').lenght > 3 ){
             return null;

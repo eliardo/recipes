@@ -1,5 +1,10 @@
 const request = require("request");
 
+if(process.env.NODE_ENV !== 'production'){
+  const dotenv = require("dotenv");
+  dotenv.config();
+}
+
 class Giphy {
 
     handleGiphy(results){
@@ -23,7 +28,7 @@ class Giphy {
         return new Promise((resolve, reject) => {
             try {
                 request({
-                    url: "https://api.giphy.com/v1/gifs/search?api_key=JTmF4BUePF8A17vHn0c4q5eCeedJoWTD&limit=1&offset=0&rating=g&lang=en&q=" + title,
+                    url: "https://api.giphy.com/v1/gifs/search?api_key="+ process.env.GIPHY_API_KEY +"&limit=1&offset=0&q=" + title,
                     method: 'GET',
                 }, function (error, response, body) {
                     if (error) {
