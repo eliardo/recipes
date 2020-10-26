@@ -9,9 +9,14 @@ A utilização das APIs Giphy exige a criação de uma api key, você pode criar
 Com sua api key criada, você deve configurar a váriavel de ambiente GIPHY_API_KEY do arquivo .env de nosso serviço.
 
 Após isso, basta executar:
-npm i e npm start
+> npm i 
+> npm start
 Com isso você terá o serviço rodando.
 
+Outra maneira é utilizar o docker para executar através do dockerfile
+sendo necessário rodar os comandos:
+> docker build -t recipe:latest .
+> docker run -p 8000:3000 recipe
 
 
 # request
