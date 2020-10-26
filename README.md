@@ -1,6 +1,6 @@
 # recipes
 Serviço recebe entre 1 e 3 ingredientes por parâmetro e realiza busca de receitas na APIs http://www.recipepuppy.com/about/api/
-obtendo o nome da receita, também realiza a busca de um gif para a receita na https://developers.giphy.com/docs/
+obtendo o nome da receita, ingredientes e link, também realiza a busca de um gif para a receita na https://developers.giphy.com/docs/
 
 Disponível via GET na rota /recipes o request deve ser realizado passando o(s) ingredientes via parâmetro na URL e devem ser separados por vírgula, veja o exemplo onde onion e garlic são ingredientes passados para a chamada:
 localhost:3000/recipes?i=onions,garlic
